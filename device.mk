@@ -31,3 +31,7 @@ PRODUCT_PACKAGES += \
     update_engine \
     update_verifier \
     update_engine_sideload
+
+# USB
+PRODUCT_SYSTEM_PROPERTIES += \
+    ro.sys.usb.storage.type=mtp
