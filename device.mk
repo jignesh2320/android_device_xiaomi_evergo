@@ -37,6 +37,12 @@ PRODUCT_PACKAGES += \
     update_verifier \
     update_engine_sideload
 
+# TEE
+PRODUCT_VENDOR_PROPERTIES += \
+    ro.vendor.mtk_microtrust_tee_support=1 \
+    ro.vendor.mtk_svp_on_mtee_support=1 \
+    ro.vendor.mtk_tee_gp_support=1
+
 # USB
 PRODUCT_SYSTEM_PROPERTIES += \
     ro.sys.usb.storage.type=mtp
