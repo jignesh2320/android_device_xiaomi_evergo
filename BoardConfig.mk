@@ -134,3 +134,9 @@ TW_DEFAULT_BRIGHTNESS := 1200
 
 # Storage
 RECOVERY_SDCARD_ON_DATA := true
+# TWRP (Debug)
+TWRP_INCLUDE_LOGCAT := true
+TARGET_USES_LOGD := true
+
+# This device does not support fastboot boot, do *NOT* remove!
+TW_NO_FASTBOOT_BOOT := true
