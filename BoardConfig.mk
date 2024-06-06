@@ -138,5 +138,12 @@ RECOVERY_SDCARD_ON_DATA := true
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 
+# Crypto
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_FBE := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := true
+TW_PREPARE_DATA_MEDIA_EARLY := true
+
+
 # This device does not support fastboot boot, do *NOT* remove!
 TW_NO_FASTBOOT_BOOT := true
