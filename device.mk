@@ -35,3 +35,10 @@ PRODUCT_PACKAGES += \
 # USB
 PRODUCT_SYSTEM_PROPERTIES += \
     ro.sys.usb.storage.type=mtp
+
+
+ VNDK
+PRODUCT_TARGET_VNDK_VERSION := 31
+
+# Shipping API level
+PRODUCT_SHIPPING_API_LEVEL := 30
