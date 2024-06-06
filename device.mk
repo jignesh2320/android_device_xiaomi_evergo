@@ -29,7 +29,31 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     bootctrl.mt6833
 
+# Crypto
+PRODUCT_VENDOR_PROPERTIES += \
+    ro.crypto.volume.filenames_mode=aes-256-cts
 
+# Kernel
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)-kernel/Image.gz:kernel
+
+# Keymaster
+TARGET_RECOVERY_DEVICE_MODULES += \
+    libkeymaster4 \
+    libkeymaster41 \
+    libpuresoftkeymasterdevice
+
+RECOVERY_LIBRARY_SOURCE_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster41.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so
+
+PRODUCT_VENDOR_PROPERTIES += \
+    ro.hardware.kmsetkey=beanpod
+
+# Ramdisk
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/fstab.mt6833:$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.mt6833
 PRODUCT_PACKAGES += \
     otapreopt_script \
     cppreopts.sh \
