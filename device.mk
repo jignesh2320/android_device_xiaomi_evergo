@@ -7,9 +7,8 @@
 
 LOCAL_PATH := device/xiaomi/evergo
 
-# Project ID Quota
-$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
-
+PRODUCT_PACKAGES += \
+    otapreopt_script
 
 # A/B
 AB_OTA_POSTINSTALL_CONFIG += \
@@ -20,18 +19,15 @@ AB_OTA_POSTINSTALL_CONFIG += \
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.0-impl \
-    android.hardware.boot@1.0-impl.recovery \
     bootctrl.mt6833 \
-    bootctrl.mt6833.recovery \
-    android.hardware.boot@1.0-service
+    android.hardware.boot@1.2-service \
+    android.hardware.boot@1.2-mtkimpl \
+    android.hardware.boot@1.2-mtkimpl.recovery
+
 
 PRODUCT_PACKAGES += \
-    bootctrl.mt6833
-
-# Crypto
-PRODUCT_VENDOR_PROPERTIES += \
-    ro.crypto.volume.filenames_mode=aes-256-cts
+    bootctrl.mt6833 \
+    bootctrl.mt6833.recovery
 
 # Kernel
 PRODUCT_COPY_FILES += \
@@ -67,18 +63,20 @@ PRODUCT_VENDOR_PROPERTIES += \
 # Ramdisk
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/fstab.mt6833:$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.mt6833
-PRODUCT_PACKAGES += \
-    otapreopt_script \
-    cppreopts.sh \
-    update_engine \
-    update_verifier \
-    update_engine_sideload
 
-# TEE
-PRODUCT_VENDOR_PROPERTIES += \
-    ro.vendor.mtk_microtrust_tee_support=1 \
-    ro.vendor.mtk_svp_on_mtee_support=1 \
-    ro.vendor.mtk_tee_gp_support=1
+# Update Engine
+PRODUCT_PACKAGES += \
+    update_engine_sideload \
+    update_verifier
+
+PRODUCT_PACKAGES_DEBUG += \
+    update_engine_client
+
+# Fastbootd
+PRODUCT_PACKAGES += \
+    fastbootd \
+    android.hardware.fastboot@1.0-impl-mock
+
 
 # USB
 PRODUCT_SYSTEM_PROPERTIES += \
