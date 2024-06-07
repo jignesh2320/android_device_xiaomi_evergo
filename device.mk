@@ -37,6 +37,14 @@ PRODUCT_VENDOR_PROPERTIES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)-kernel/Image.gz:kernel
 
+# Gatekeeper
+PRODUCT_PACKAGES += \
+    android.hardware.gatekeeper@1.0-service-recovery \
+    android.hardware.gatekeeper@1.0-impl-recovery
+
+PRODUCT_VENDOR_PROPERTIES += \
+    ro.hardware.gatekeeper=beanpod
+
 # Keymaster
 TARGET_RECOVERY_DEVICE_MODULES += \
     libkeymaster4 \
